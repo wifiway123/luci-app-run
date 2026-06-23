@@ -24,7 +24,7 @@ const I18N = {
 		title: "Run安装器",
 		desc: "在路由器上上传并执行脚本或安装包，注意架构务必匹配。",
 		drop_tip: "拖入文件，或从电脑选择。",
-		choose_file: "选择文件",
+		choose_file: "选择 .run 或 .sh 文件",
 		choose_ipk: "选择 .ipk 包",
 		choose_apk: "选择 .apk 包",
 		execute: "执行",
@@ -48,7 +48,7 @@ const I18N = {
 		title: "Run Installer",
 		desc: "Upload and execute scripts or packages on this router, ensuring architecture compatibility.",
 		drop_tip: "Drop a file here, or choose one from your computer.",
-		choose_file: "Choose file",
+		choose_file: "Choose .run or .sh file",
 		choose_ipk: "Choose .ipk package",
 		choose_apk: "Choose .apk package",
 		execute: "Execute",
@@ -155,7 +155,7 @@ return view.extend({
 	logOffset: 0,
 	currentUploadId: null,
 	appVersion: 'unknown',
-	capabilities: { opkg: 0, apk: 0 },
+	capabilities: { opkg: 1, apk: 1 },
 
 	load: function () {
 		var self = this;
@@ -249,7 +249,7 @@ return view.extend({
 
 		var ipkButton = E('button', {
 			class: 'btn cbi-button cbi-button-add',
-			style: self.capabilities.opkg ? 'margin-left:10px;background-color:#2E7D32;color:white' : 'margin-left:10px;background-color:#ccc;color:#666;border-color:#ccc;cursor:not-allowed;opacity:0.6',
+			style: 'margin-left:10px;background-color:#2E7D32;color:white' + (!self.capabilities.opkg ? ';cursor:not-allowed;opacity:0.5;' : ''),
 			disabled: !self.capabilities.opkg,
 			click: function (ev) {
 				ev.preventDefault();
@@ -260,7 +260,7 @@ return view.extend({
 
 		var apkButton = E('button', {
 			class: 'btn cbi-button cbi-button-add',
-			style: self.capabilities.apk ? 'margin-left:10px;background-color:#1565C0;color:white' : 'margin-left:10px;background-color:#ccc;color:#666;border-color:#ccc;cursor:not-allowed;opacity:0.6',
+			style: 'margin-left:10px;background-color:#1565C0;color:white' + (!self.capabilities.apk ? ';cursor:not-allowed;opacity:0.5;' : ''),
 			disabled: !self.capabilities.apk,
 			click: function (ev) {
 				ev.preventDefault();
