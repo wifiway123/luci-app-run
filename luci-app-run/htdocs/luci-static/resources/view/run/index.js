@@ -226,7 +226,7 @@ return view.extend({
 
 		var pickButton = E('button', {
 			class: 'btn cbi-button cbi-button-apply',
-			style: 'background-color:#333;color:white;border-color:#333',
+			style: 'background-color:#333!important;color:white!important;border-color:#333!important',
 			click: function (ev) {
 				ev.preventDefault();
 				fileInput.click();
@@ -235,7 +235,7 @@ return view.extend({
 
 		var ipkButton = E('button', {
 			class: 'btn cbi-button cbi-button-add',
-			style: 'margin-left:10px;background-color:#2E7D32;color:white',
+			style: 'margin-left:10px;background-color:#2E7D32!important;color:white!important',
 			click: function (ev) {
 				ev.preventDefault();
 				ipkInput.click();
@@ -244,7 +244,7 @@ return view.extend({
 
 		var apkButton = E('button', {
 			class: 'btn cbi-button cbi-button-add',
-			style: 'margin-left:10px;background-color:#1565C0;color:white',
+			style: 'margin-left:10px;background-color:#1565C0!important;color:white!important',
 			click: function (ev) {
 				ev.preventDefault();
 				apkInput.click();
