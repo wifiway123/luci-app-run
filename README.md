@@ -37,6 +37,7 @@ wget -O toggle.sh https://cafe.cpolar.cn/wkdaily/cool/raw/branch/master/apk-untr
 
 
 ### 程序截图
-<img width="3818" height="1488" alt="image" src="https://github.com/user-attachments/assets/803419b2-caab-4315-975b-6efc2d5e2212" />
+<img width="3800" height="1586" alt="ImmortalWrt - LuCI 2026-06-23 18-12-29" src="https://github.com/user-attachments/assets/8dd3b8c0-1b89-4596-a4be-195f3893d32f" />
+
 
 
