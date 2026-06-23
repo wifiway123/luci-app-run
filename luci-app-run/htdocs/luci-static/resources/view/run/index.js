@@ -3,9 +3,9 @@
 'require rpc';
 'require ui';
 'require poll';
-'require run/i18n';
+'require view/run/i18n';
 
-var i18n = require('run/i18n');
+var i18n = require('view/run/i18n');
 function _(key) {
 	return i18n._.apply(i18n, arguments);
 }
