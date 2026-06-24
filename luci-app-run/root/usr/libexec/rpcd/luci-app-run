@@ -376,8 +376,19 @@ cleanup() {
         return
     fi
     
-    rm -rf "$UPLOAD_DIR" "$RUN_DIR" "$STATE_FILE"
-    mkdir -p "$UPLOAD_DIR" "$RUN_DIR"
+    rm -rf "$UPLOAD_DIR"
+    mkdir -p "$UPLOAD_DIR"
+    
+    # Keep state file but clear PID and FILE, preserve LOG path
+    if [ -n "$LOG" ]; then
+        echo "PID=" > "$STATE_FILE"
+        echo "FILE=" >> "$STATE_FILE"
+        echo "LOG=$LOG" >> "$STATE_FILE"
+        echo "STARTED=" >> "$STATE_FILE"
+    else
+        > "$STATE_FILE"
+    fi
+    
     json_ok "Cleaned"
 }
 
