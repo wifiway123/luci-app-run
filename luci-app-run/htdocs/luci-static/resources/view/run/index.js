@@ -93,7 +93,8 @@ function getDefaultText(key) {
 		'download_run': '下载并执行 .run',
 		'download_url': '请输入 .run 文件的下载地址',
 		'downloading': '正在下载...',
-		'only_run': '仅支持 .run 文件下载'
+		'only_run': '仅支持 .run 文件下载',
+		'no_file': '请先选择sh文件'
 	};
 	return defaults[key] || null;
 }
@@ -316,7 +317,6 @@ return view.extend({
 
 		var runButton = E('button', {
 			class: 'cbi-button cbi-button-action run-btn',
-			disabled: true,
 			style: 'min-width:140px;margin-left:15px;background:#7B1FA2!important;background-color:#7B1FA2!important;background-image:none!important;color:#fff!important;border-color:#7B1FA2!important;box-shadow:none!important;text-shadow:none!important;opacity:1!important',
 			click: function (ev) {
 				ev.preventDefault();
@@ -348,7 +348,6 @@ return view.extend({
 					self.logOffset = 0;
 					self.prevRunning = false;
 					self.autoCleanType = null;
-					runButton.disabled = true;
 					log.textContent = '';
 					progress.style.display = 'none';
 					state.textContent = _('clean_done');
@@ -440,7 +439,6 @@ return view.extend({
 
 		progress.style.display = '';
 		progress.value = 0;
-		runButton.disabled = true;
 		state.textContent = _('prepare_upload', file.name, formatBytes(file.size));
 
 		return uploadStart(file.name, file.size).then(function (res) {
@@ -473,12 +471,10 @@ return view.extend({
 			};
 
 			xhr.onerror = function () {
-				document.querySelector('.cbi-button-action').disabled = false;
 				reject(new Error(_('upload_err')));
 			};
 
 			xhr.onload = function () {
-				document.querySelector('.cbi-button-action').disabled = false;
 				progress.value = 100;
 
 				uploadFinish(session.id).then(function () {
@@ -497,9 +493,11 @@ return view.extend({
 	startRun: function (runButton, state, args) {
 		var self = this;
 
-		if (!this.currentUploadId) return;
+		if (!this.currentUploadId) {
+			ui.addNotification(null, E('p', [_('no_file')]), 'danger');
+			return;
+		}
 
-		runButton.disabled = true;
 		state.textContent = _('starting');
 		self.autoCleanType = null;
 
@@ -521,7 +519,6 @@ return view.extend({
 			}
 			state.textContent = _('started', res.pid);
 		}).catch(function (err) {
-			runButton.disabled = false;
 			ui.addNotification(null, E('p', [err.message || err]), 'danger');
 		});
 	},
@@ -623,7 +620,6 @@ return view.extend({
 	startDownload: function (runButton, state, url) {
 		var self = this;
 
-		runButton.disabled = true;
 		state.textContent = _('downloading');
 		self.prevRunning = false;
 		self.autoCleanType = null;
@@ -637,7 +633,6 @@ return view.extend({
 			self.prevRunning = true;
 			state.textContent = _('started', res.pid);
 		}).catch(function (err) {
-			runButton.disabled = false;
 			ui.addNotification(null, E('p', [err.message || err]), 'danger');
 		});
 	},
