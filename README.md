@@ -39,5 +39,11 @@ wget -O toggle.sh https://cafe.cpolar.cn/wkdaily/cool/raw/branch/master/apk-untr
 ### 程序截图
 <img width="3800" height="1586" alt="ImmortalWrt - LuCI 2026-06-23 18-12-29" src="https://github.com/user-attachments/assets/8dd3b8c0-1b89-4596-a4be-195f3893d32f" />
 
+## ❤️赞助作者 ⬇️⬇️
 
+<a href="https://wkdaily.cpolar.cn/01" target="_blank">
+  <img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png"
+       alt="Buy Me A Coffee"
+       style="width:15%; height:auto;">
+</a>
 
